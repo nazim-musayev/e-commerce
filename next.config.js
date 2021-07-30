@@ -1,3 +1,10 @@
+// module.exports = {
+//   reactStrictMode: true,
+// }
+
 module.exports = {
-  reactStrictMode: true,
+  images : {
+      domains : ['fakestoreapi.com'],
+      deviceSizes: [1, 600, 800, 1280, 1920]
+  }
 }
