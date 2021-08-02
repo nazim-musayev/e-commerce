@@ -9,7 +9,11 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import TempDrawer from './TempDrawer'
 import CallUs from './CallUs'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import netlifyIdentity from 'netlify-identity-widget'
+import { useEffect } from 'react'
+import { login, logout } from '../store/actions'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       display : "flex",
       background : "black",
       padding : theme.spacing(2),
-      zIndex : 999,
+      zIndex : 99,
       position : "sticky",
       top : 0,
     }
@@ -26,8 +30,22 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const counter = useSelector(state => state.cart.counter)
   const wishlistCounter = useSelector(state => state.wishlist.counter)
+  const user = useSelector(state => state.auth.user)
+  // const login = useSelector(state => state.auth.login)
+  const dispatch = useDispatch()
   const classes = useStyles();
   const router = useRouter()
+  console.log(user)
+
+  const handleClick = () => {
+    netlifyIdentity.open()
+    netlifyIdentity.on('login', (user) => {
+      dispatch(login(user))
+    })
+    netlifyIdentity.on('logout', (user) => {
+      dispatch(logout(user))
+    })
+ }
 
     return (
       <>
@@ -67,13 +85,13 @@ const Navbar = () => {
           </Grid>
 
           <Grid item xs={1}>
-            <Link href="./login">         
-            <IconButton color="primary">
+            {/* <Link href="./login">          */}
+            <IconButton color="primary" onClick={handleClick}>
             <Badge color="error" variant="dot">
               <BsPerson />
             </Badge>
             </IconButton>
-            </Link>
+            {/* </Link> */}
           </Grid>
 
           <Grid item xs={2}></Grid>

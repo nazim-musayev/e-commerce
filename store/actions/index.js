@@ -1,32 +1,5 @@
 import * as types from '../types'
-import axios from 'axios'
 
-
-//  COUNTER
-
-// export const basketIncrement = () => {
-//     return {
-//         type : types.BASKET_INCREMENT
-//     }
-// }
-
-// export const basketDecrement = () => {
-//     return {
-//         type : types.BASKET_DECREMENT
-//     }
-// }
-
-// export const wishlistIncrement = () => {
-//     return {
-//         type : types.WISHLIST_INCREMENT
-//     }
-// }
-
-// export const wishlistDecrement = () => {
-//     return {
-//         type : types.WISHLIST_DECREMENT
-//     }
-// }
 
 //  SHOPPING CART
 
@@ -148,5 +121,22 @@ export const displayDialog = () => {
 export const closeDialog = () => {
     return {
         type : types.CLOSE_DIALOG
+    }
+}
+
+
+//  NETLIFY IDENTITY
+
+export const login = payload => {
+    return {
+        type : types.USER_LOGIN,
+        payload
+    }
+}
+
+export const logout = payload => {
+    return {
+        type : types.USER_LOGOUT,
+        payload
     }
 }

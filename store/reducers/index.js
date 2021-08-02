@@ -6,6 +6,7 @@ import { dialogReducer } from "./dialogReducer";
 import { productsReducer } from './productsReducer';
 import { cartReducer } from './cartReducer';
 import { wishlistReducer } from "./wishlistReducer";
+import { authReducer } from "./authReducer";
 
 
 const persistConfig = {
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     dialog : dialogReducer,
     products : productsReducer,
     cart : cartReducer,
-    wishlist : wishlistReducer
+    wishlist : wishlistReducer,
+    auth : authReducer
 })
 
 export default persistReducer(persistConfig, rootReducer)
