@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
@@ -11,32 +10,24 @@ import Divider from '@material-ui/core/Divider'
 import { MdAddShoppingCart, MdFavorite } from 'react-icons/md'
 import { addToWishlist, addToCart } from '../store/actions';
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react';
-import { selectOption, sortByPriceHighest, sortByPriceLowest } from '../store/actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 330,
-    height : 300,
+    height : 280,
     marginBottom : theme.spacing(4)
   },
   media: {
     margin : theme.spacing(6)
-    // height: 0,
-    // paddingTop: '56.25%', // 16:9
   },
-  // cardContent : {
-  //   display : "flex"
-  // },
-  actions : {
-    display : "flex",
-    justifyContent : "flex-end",
+  icons : {
+    display : "flex"
   }
 }));
 
 export default function ShoppingCard() {
-  const  products  = useSelector(state => state.myProducts.products)
-  const  cartItems  = useSelector(state => state.cart.items)
+  const products = useSelector(state => state.products.items)
+  const cartItems = useSelector(state => state.cart.items)
   const dispatch = useDispatch()
   const classes = useStyles() 
 
@@ -53,12 +44,12 @@ export default function ShoppingCard() {
 
             <Divider />
 
-            <CardContent className={classes.cardContent}>
+            <CardContent>
               
               <Grid container alignItems="center">
                 <Grid item xs={12}>
               <Typography variant="body2" color="textSecondary" component="p" gutterBottom className={classes.title}>
-                {product.title.slice(0,30)}
+                {product.title.slice(0,23)}
               </Typography>
               </Grid>
 
@@ -68,7 +59,7 @@ export default function ShoppingCard() {
               </Typography>
               </Grid>
 
-              <Grid item xs={6}>
+              <Grid item xs={6} className={classes.icons}>
               <IconButton onClick={() => dispatch(addToWishlist(product))}>
                 <MdFavorite />
               </IconButton>
@@ -80,16 +71,6 @@ export default function ShoppingCard() {
              
               </Grid>
             </CardContent>
-
-            {/* <CardActions className={classes.actions}>
-              <IconButton onClick={() => dispatch(addToWishlist(product))}>
-                <MdFavorite />
-              </IconButton>
-
-              <IconButton onClick={() => dispatch(addToCart(product))}>
-                <MdAddShoppingCart />
-              </IconButton>
-            </CardActions> */}
 
           </Card>
         </Grid>

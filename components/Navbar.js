@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const counter = useSelector(state => state.cart.counter)
-  const wishlistCounter = useSelector(state => state.myProducts.wishlistCounter)
+  const wishlistCounter = useSelector(state => state.wishlist.counter)
   const classes = useStyles();
   const router = useRouter()
 

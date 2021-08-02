@@ -28,8 +28,7 @@ import axios from 'axios'
 //     }
 // }
 
-//  ADDING-REMOVING
-
+//  SHOPPING CART
 
 export const addToCart = (items, product) => dispatch => {
     const cartItems = items.slice()
@@ -37,27 +36,34 @@ export const addToCart = (items, product) => dispatch => {
 
     cartItems.map((item) => {
        if(item.id === product.id) {
-           item.count += 1
+           item.quantity += 1
            productInCart = true
        }
     })
 
     if(!productInCart) {
-        cartItems.push({...product, count : 1 })
+        cartItems.push({...product, quantity : 1 })
     }
 
-    localStorage.setItem("cartItems", JSON.stringify(cartItems))
-
-    dispatch({ type : types.ADD_TO_CART, payload : {cartItems} })
+    dispatch({ 
+        type : types.ADD_TO_CART, 
+        payload : { cartItems } 
+    })
 }
 
 
 export const removeFromCart = (items, product) => (dispatch) => {
-    const cartItems = items.slice().filter((a) => a.id !== product.id);
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    dispatch({ type: types.REMOVE_FROM_CART, payload: { cartItems } });
-  }
+    const cartItems = items.slice().filter((a) => a.id !== product.id)
+    const quantity = product.quantity
+    dispatch({ 
+        type: types.REMOVE_FROM_CART, 
+        payload: { cartItems, quantity } 
+    })
+}
 
+
+
+//  WISHLIST
 
 export const addToWishlist = payload => {
     return {
@@ -75,7 +81,8 @@ export const removeFromWishlist = payload => {
 
 //  SORTING PRODUCTS
 
-export const sortBy = ( sortedProducts, sortingValue) => dispatch => {
+export const sortBy = ( products, sortingValue) => dispatch => {
+    const sortedProducts = products.slice()
     if (sortingValue !== "") {
         sortedProducts.sort((a, b) => 
         sortingValue === "lowest" ? a.price - b.price : 

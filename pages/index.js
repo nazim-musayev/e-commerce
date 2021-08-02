@@ -31,21 +31,20 @@ const Home = () => {
   const classes = useStyles()
   
   return (
-    <>
+    <Grid container>
       <Meta title="Əsas Səhifə" />
-      
 
-   
+      <Grid item xs={7}></Grid>
+
+      <Grid item xs={4}>
         <SelectMenu />
-      
-
+      </Grid>
+  
       <Grid item container xs={12} spacing={1} >
-
         <Card />
-      
       </Grid>
     
-    </> 
+    </Grid> 
   )
 }
 

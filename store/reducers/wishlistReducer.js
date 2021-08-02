@@ -5,20 +5,20 @@ const initialState = {
     counter : 0
 }
 
-export const cartReducer = (state = initialState, {type, payload}) => {
+export const wishlistReducer = (state = initialState, {type, payload}) => {
     switch(type) {
-        case types.ADD_TO_CART :
+        case types.ADD_TO_WİSHLİST :
             return {
                 ...state,
-                items : payload.cartItems,
+                items : [...state.items, payload],
                 counter : state.counter + 1
             }
 
-        case types.REMOVE_FROM_CART :
+        case types.REMOVE_FROM_WİSHLİST :
             return {
                 ...state,
-                items : payload.cartItems,
-                counter : state.counter - payload.quantity
+                items : state.items.filter(item => item !== payload),
+                counter : state.counter - 1
             }
         
         default :

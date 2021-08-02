@@ -2,7 +2,6 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Meta from "../components/Meta"
 import { useSelector, useDispatch } from 'react-redux'
-import { getProducts } from '../store/actions'
 
 const Wishlist = () => {
     return (

@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ControlledOpenSelect() {
-  const products = useSelector(state => state.myProducts.products)
-  const sortingValue = useSelector(state => state.myProducts.sortingValue)
+  const products = useSelector(state => state.products.items)
+  const sortingValue = useSelector(state => state.products.sortingValue)
   const dispatch = useDispatch()
   const classes = useStyles()
-
+  
   const handleChange = (event) => {
     dispatch(sortBy(products, event.target.value))
   }

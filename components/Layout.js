@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
+import Container from "@material-ui/core/Container"
 import SearchPage from './SearchPage'
 import ScrollToTop from "./ScrollToTop"
 import SearchBar from './SearchBar'
@@ -38,9 +39,9 @@ const Layout = ({children}) => {
             <Navbar />
             <SearchBar />
 
-            <div className={classes.children}>
+            <Container className={classes.children}>
               {children}
-            </div>
+            </Container>
             
             <Footer />
           </>
