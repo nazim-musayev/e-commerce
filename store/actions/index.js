@@ -1,4 +1,5 @@
 import * as types from '../types'
+import netlifyIdentity from 'netlify-identity-widget'
 
 
 //  SHOPPING CART

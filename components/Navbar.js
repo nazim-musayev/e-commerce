@@ -30,17 +30,24 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const counter = useSelector(state => state.cart.counter)
   const wishlistCounter = useSelector(state => state.wishlist.counter)
-  const user = useSelector(state => state.auth.user)
-  // const login = useSelector(state => state.auth.login)
+  const iconBadge = useSelector(state => state.auth.iconBadge)
   const dispatch = useDispatch()
   const classes = useStyles();
   const router = useRouter()
-  console.log(user)
+
+
+  useEffect(() => {
+    netlifyIdentity.init()
+    return () => {
+      netlifyIdentity.off('login')
+    }
+  },[])
 
   const handleClick = () => {
     netlifyIdentity.open()
     netlifyIdentity.on('login', (user) => {
       dispatch(login(user))
+      // netlifyIdentity.close()
     })
     netlifyIdentity.on('logout', (user) => {
       dispatch(logout(user))
@@ -87,7 +94,7 @@ const Navbar = () => {
           <Grid item xs={1}>
             {/* <Link href="./login">          */}
             <IconButton color="primary" onClick={handleClick}>
-            <Badge color="error" variant="dot">
+            <Badge color="error" variant={iconBadge}>
               <BsPerson />
             </Badge>
             </IconButton>

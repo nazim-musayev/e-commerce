@@ -23,7 +23,7 @@ const SearchPage = () => {
     return (
       <>
       
-        <Grid container justify="space-between" alignItems="center"> 
+        <Grid container justifyContent="space-between" alignItems="center"> 
 
           <Grid item xs={9}>
             <SearchBar className={classes.searchBar}/>

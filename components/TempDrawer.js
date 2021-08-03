@@ -57,7 +57,7 @@ const TempDrawer = () => {
       </IconButton>
       <Drawer open={drawer} onClose={handleDrawer} variant="temporary">
         <CallUs />
-        <Grid container justify="flex-end" direction="row" className={classes.closeIcon} >
+        <Grid container justifyContent="flex-end" direction="row" className={classes.closeIcon} >
           <IconButton onClick={handleDrawer} >
             <GrFormClose />
           </IconButton>

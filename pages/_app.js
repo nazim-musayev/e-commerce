@@ -9,8 +9,8 @@ import '../styles/globals.css'
 import { Provider } from 'react-redux'
 import { useStore } from '../store/store'
 import { persistStore } from 'redux-persist'
-import { PersistGate } from 'redux-persist/integration/react';
-import netlifyIdentity from 'netlify-identity-widget'
+import { PersistGate } from 'redux-persist/integration/react'
+
 
 export default function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState)
@@ -20,7 +20,6 @@ export default function MyApp({ Component, pageProps }) {
   // const { Component, pageProps } = props;
 
   React.useEffect(() => {
-    netlifyIdentity.init()
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {

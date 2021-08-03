@@ -14,9 +14,10 @@ const Meta = ({ title, keywords, description }) => {
 }
 
 Meta.defaultProps = {
-  title: 'Əsas Səhifə',
-  keywords: 'resept, reseptlər, yemək resepti, salat resepti, şirniyyatlar, yeni reseptlər',
-  description: 'Ən ləzzətli yemək reseptləri ilə tanış olmaq üçün səhifəmizə baş çəkə bilərsiz',
+  title: 'E-Commerce',
+  keywords: 'commerce, e-commerce, shopping, shopping cart, products, clothes, shoes, shirts',
+  description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum autem dolore laboriosam quae possimus. Totam necessitatibus, fuga dolor sunt, est nam sapiente iusto deleniti tempora reiciendis labore nobis vel unde.', 
 }
 
 export default Meta
+

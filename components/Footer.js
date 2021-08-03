@@ -147,7 +147,7 @@ const Footer = () => {
 
           
 
-          <Grid item container xs={12} justify="space-around" className={classes.iconGrid} >
+          <Grid item container xs={12} justifyContent="space-around" className={classes.iconGrid} >
             {icons.map(({icon, path}) => (
               <IconButton color="primary" key={path} onClick={() => router.push(path)}>
                  {icon}
