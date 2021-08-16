@@ -47,7 +47,7 @@ const SearchPage = () => {
         <Grid item container xs={9} className={classes.searchBar} alignItems="center">
 
           <Grid item xs={2}>
-            <IconButton disabled edge="start">
+            <IconButton disabled>
               <AiOutlineSearch />
             </IconButton>
           </Grid>

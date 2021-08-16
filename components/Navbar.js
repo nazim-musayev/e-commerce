@@ -24,25 +24,25 @@ const Navbar = () => {
   const dispatch = useDispatch()
 
 
-  useEffect(() => {
-    netlifyIdentity.init()
-    return () => {
-      netlifyIdentity.off('login')
-    }
-  },[])
+//   useEffect(() => {
+//     netlifyIdentity.init()
+//     return () => {
+//       netlifyIdentity.off('login')
+//     }
+//   },[])
 
-  const handleClick = () => {
-    netlifyIdentity.open()
-    netlifyIdentity.on('login', (user) => {
-      dispatch(login(user))
-      setInvisible(false)
-    })
-    netlifyIdentity.on('logout', (user) => {
-      dispatch(logout(user))
-      netlifyIdentity.close()
-      setInvisible(true)
-    })
- }
+//   const handleClick = () => {
+//     netlifyIdentity.open()
+//     netlifyIdentity.on('login', (user) => {
+//       dispatch(login(user))
+//       setInvisible(false)
+//     })
+//     netlifyIdentity.on('logout', (user) => {
+//       dispatch(logout(user))
+//       netlifyIdentity.close()
+//       setInvisible(true)
+//     })
+//  }
 
     return (
       <>
@@ -124,7 +124,7 @@ const Navbar = () => {
           
           <Box clone >
           <Grid item xs={1} container justifyContent="flex-end">           
-            <IconButton color="primary" onClick={handleClick}>
+            <IconButton color="primary">
               <Badge color="error" variant="dot" invisible={invisible}>
                 <BsPerson />
               </Badge>

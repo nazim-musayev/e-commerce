@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import Divider from '@material-ui/core/Divider'
-import Skeleton from '@material-ui/lab/Skeleton'
 import { MdAddShoppingCart, MdFavorite } from 'react-icons/md'
 import { getProducts, addToWishlist, removeFromWishlist, addToCart } from '../store/actions';
 import { useDispatch, useSelector } from 'react-redux'
@@ -43,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ShoppingCard = () => {
-  const isLoading = useSelector(state => state.products.isLoading)
   const products  = useSelector(state => state.products.items)
   const cartItems = useSelector(state => state.cart.items)
   const wishlist = useSelector(state => state.wishlist.items)
@@ -63,52 +61,40 @@ const ShoppingCard = () => {
         <Grid item container justifyContent="center" xs={12} sm={6} md={4} key={product.id}>
           <Card className={classes.card} raised>
 
-            {isLoading ? (<Skeleton variant="rect" width={400} height={250} />) : (
-              <CardMedia className={classes.media}>
-                <NextLink href={`/${product.category}/${product.id}`} passHref>
-                  <Link>
+            <CardMedia className={classes.media}>
+              <NextLink href={`/${product.category}/${product.id}`} passHref>
+                <Link>
                   <Image src={product.image} width={400} height={250} alt="Card Image" layout="responsive" />
-                  </Link>
-                </NextLink>   
-              </CardMedia>
-            )}
-           
+                </Link>
+              </NextLink>   
+            </CardMedia>
+     
             <Divider />
       
             <CardContent>
              <Grid container alignItems="center">
                 
               <Grid item xs={12}>
-                {isLoading ? (<Skeleton variant="text" />) : (
-                  <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
-                    {product.title.slice(0,22)}
-                  </Typography>
-                )}
-                
+                <Typography variant="body2" color="textSecondary" component="p" gutterBottom>
+                  {product.title.slice(0,22)}
+                </Typography> 
               </Grid>
 
               <Grid item xs={8} sm={7}>
-                {isLoading ? (<Skeleton variant="text" />) : (
-                  <Typography variant="h6" color="error" >
-                    $ {product.price}
-                  </Typography>
-                )}
+                <Typography variant="h6" color="error" >
+                  $ {product.price}
+                </Typography>
               </Grid>
 
               <Grid item xs={4} sm={5} className={classes.icons}>
-                {isLoading ? (<Skeleton variant="circle" width={50} height={50} />) : (
-                  <IconButton onClick={() => dispatch(alreadyInList ? removeFromWishlist(wishlist, product) 
-                    : (addToWishlist(wishlist, product)))} className={alreadyInList && classes.iconColor} >
-                       <MdFavorite />
-                  </IconButton>
-                )}
+                <IconButton onClick={() => dispatch(alreadyInList ? removeFromWishlist(wishlist, product) 
+                  : (addToWishlist(wishlist, product)))} className={alreadyInList && classes.iconColor} >
+                     <MdFavorite />
+                </IconButton>
 
-                {isLoading ? (<Skeleton variant="circle" width={50} height={50}/>) : (
-                  <IconButton onClick={() => dispatch(addToCart(cartItems, product))}>
-                    <MdAddShoppingCart />
-                  </IconButton>
-                )}
-                
+                <IconButton onClick={() => dispatch(addToCart(cartItems, product))}>
+                  <MdAddShoppingCart />
+                </IconButton> 
               </Grid>
              
              </Grid>

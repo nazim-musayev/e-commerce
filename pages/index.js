@@ -2,10 +2,10 @@ import Container from '@material-ui/core/Container'
 import SelectMenu from '../components/SelectMenu'
 import Card  from "../components/Card"
 import Grid from '@material-ui/core/Grid'
-
+ 
 
 const Home = () => {
-
+  
   return (
     <Container >
       <Grid container spacing={2}>
