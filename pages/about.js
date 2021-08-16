@@ -39,7 +39,7 @@ const About = () => {
           <Divider variant="middle" />
 
           <Typography variant="h6" gutterBottom align="center" className={classes.header}>
-              Hello ! we're E-Commerce App
+              Hello ! We are E-Commerce App
           </Typography>
 
           <Typography variant="overline" className={classes.typography} >
