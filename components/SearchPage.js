@@ -46,18 +46,18 @@ const SearchPage = () => {
 
         <Grid item container xs={9} className={classes.searchBar} alignItems="center">
 
-          <Grid item xs={1}>
-            <IconButton disabled edge="end">
+          <Grid item xs={2}>
+            <IconButton disabled edge="start">
               <AiOutlineSearch />
             </IconButton>
           </Grid>
  
-          <Grid item xs={9}>
+          <Grid item xs={8}>
             <InputBase placeholder="Search" fullWidth value={searchWord} onChange={handleChange} />
           </Grid>
  
           <Grid item xs={2}>
-            <IconButton edge="start" onClick={handleClear}>
+            <IconButton edge="end" onClick={handleClear}>
                <MdCancel />
             </IconButton>
           </Grid>

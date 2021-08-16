@@ -11,7 +11,7 @@ import CallUs from './CallUs'
 import { useSelector, useDispatch } from 'react-redux'
 import netlifyIdentity from 'netlify-identity-widget'
 import NextLink from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { login, logout } from '../store/actions'
 import SearchBar from './SearchBar'
 import SearchPortal from './SearchPortal'
@@ -20,9 +20,9 @@ import SearchPortal from './SearchPortal'
 const Navbar = () => {
   const counter = useSelector(state => state.cart.counter)
   const wishlistCounter = useSelector(state => state.wishlist.counter)
+  const [invisible, setInvisible] = useState(true)
   const dispatch = useDispatch()
 
-  let iconBadge = "standard"
 
   useEffect(() => {
     netlifyIdentity.init()
@@ -35,12 +35,12 @@ const Navbar = () => {
     netlifyIdentity.open()
     netlifyIdentity.on('login', (user) => {
       dispatch(login(user))
-      iconBadge = 'dot'
+      setInvisible(false)
     })
     netlifyIdentity.on('logout', (user) => {
       dispatch(logout(user))
       netlifyIdentity.close()
-      iconBadge = 'standard'
+      setInvisible(true)
     })
  }
 
@@ -125,7 +125,7 @@ const Navbar = () => {
           <Box clone >
           <Grid item xs={1} container justifyContent="flex-end">           
             <IconButton color="primary" onClick={handleClick}>
-              <Badge color="error" variant={iconBadge}>
+              <Badge color="error" variant="dot" invisible={invisible}>
                 <BsPerson />
               </Badge>
             </IconButton>
