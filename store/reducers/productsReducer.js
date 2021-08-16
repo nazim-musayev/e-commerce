@@ -1,20 +1,40 @@
 import * as types from '../types'
-import { products } from '../../products'
 
 const initialState = {
-    items : products,
-    sortingValue : ''
+    isLoading : false,
+    items : [],
+    error : '',
+    value : ''
 }
 
 export const productsReducer = (state = initialState, {type, payload}) => {
     switch(type) {
 
-        case types.SORT_BY :
+        case types.GET_PRODUCTS_REQUEST : 
             return {
                 ...state,
-                items : payload.sortedProducts,
-                sortingValue : payload.sortingValue,
+                isLoading : true
             }
+
+        case types.GET_PRODUCTS_SUCCESS : 
+            return {
+                isLoading : false,
+                items : payload,
+                error : '',
+            }
+
+        case types.GET_PRODUCTS_ERROR :
+            return {
+                isLoading : false,
+                items : [],
+                error : payload
+            }
+
+            case types.SORT_BY : 
+            return {
+                value : payload.sortingValue,
+                items : payload.sortedProducts,
+            }             
 
         default :
             return state

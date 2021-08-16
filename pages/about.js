@@ -26,19 +26,20 @@ const useStyles = makeStyles((theme) => ({
 
 const About = () => {
     const classes = useStyles()
+
     return (
         <>
 
-          <Meta title="Haqqımızda" />
+          <Meta title="About" />
 
           <Typography variant="h5" gutterBottom className={classes.header}>
-              Haqqımızda
+              About
           </Typography>
 
           <Divider variant="middle" />
 
           <Typography variant="h6" gutterBottom align="center" className={classes.header}>
-              Biz kimik və nə edirik ? 
+              Hello ! we're E-Commerce App
           </Typography>
 
           <Typography variant="overline" className={classes.typography} >

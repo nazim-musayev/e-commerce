@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
     typography : {
-        background : "#ff8a80",
+        background : "rgb(255, 134, 130)",
         color : "white",
-        padding : theme.spacing(2)
+        padding : theme.spacing(1)
     }
   }))
 
@@ -14,7 +14,7 @@ const CallUs = () => {
     return (
         <>
             <Typography variant="body1" align="center" className={classes.typography}>
-               Sualınız var ? Zəng edin 999 99 99
+               Need Help ? Call Us 999 99 99
             </Typography>
         </>
     )

@@ -23,6 +23,22 @@ const theme = createTheme({
       fontWeightRegular: 400,
       fontWeightMedium: 500,
       fontWeightBold: 700,
+    },
+    overrides : {
+      MuiInputLabel : {
+        root : {
+          color : "white",
+        }
+      },
+      MuiOutlinedInput : {
+        root : {
+          color : "white",
+        },
+        colorSecondary : {
+          color : "black !important",
+          border : "1px solid black !important"
+        }
+      }
     }
 })
 

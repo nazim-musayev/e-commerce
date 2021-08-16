@@ -1,14 +1,14 @@
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { makeStyles } from '@material-ui/core/styles';
-import { useSelector, useDispatch } from 'react-redux';
-import { closeDialog } from '../store/actions';
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import { makeStyles } from '@material-ui/core/styles'
+import { useSelector, useDispatch } from 'react-redux'
+import { closeDialog, displayLayout } from '../store/actions'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     title : {
         background : "rgb(255, 194, 160)"
     },
@@ -19,15 +19,16 @@ const useStyles = makeStyles((theme) => ({
             background : "rgb(255, 194, 160)"
         }
     }
-  }))
+  })
 
-export default function HelpDialog() {
-  const isDisplaying = useSelector(state => state.dialog.isDisplaying)
+const HelpDialog = () => {
+  const { isDisplaying } = useSelector(state => state.dialog)
   const dispatch = useDispatch()
   const classes = useStyles()
 
   const handleClose = () => {
     dispatch(closeDialog())
+    dispatch(displayLayout())
   }
 
   return (
@@ -36,18 +37,18 @@ export default function HelpDialog() {
       <Dialog open={isDisplaying} onClose={handleClose} >
 
         <DialogTitle className={classes.title}>
-            Mesaj göndərildi !
+            Your message is received !
         </DialogTitle>
        
         <DialogContent>
           <DialogContentText>
-            Təşəkkür edirik. Sorğunuz ən qısa müddətdə araşdırılıb cavablandırılacaq !
+            Thanks for reaching out. Someone will get back to you soon.
           </DialogContentText>
         </DialogContent>
 
         <DialogActions>
           <Button onClick={handleClose} className={classes.button}>
-            Bağla
+            Close
           </Button>
         </DialogActions>
 
@@ -55,3 +56,5 @@ export default function HelpDialog() {
     </div>
   );
 }
+
+export default HelpDialog

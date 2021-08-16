@@ -1,43 +1,78 @@
 import { makeStyles } from '@material-ui/core/styles'
+import InputBase  from "@material-ui/core/InputBase"
+import IconButton from "@material-ui/core/IconButton"
+import { AiOutlineSearch } from "react-icons/ai"
+import { MdCancel } from 'react-icons/md'
 import Button from "@material-ui/core/Button"
-import SearchBar from './SearchBar'
 import Grid from '@material-ui/core/Grid'
-import { useDispatch } from 'react-redux'
-import { displayLayout } from '../store/actions'
+import { useSelector, useDispatch } from 'react-redux'
+import { searchForProducts, clearInput, displayLayout } from '../store/actions'
+import SearchTable from './SearchTable'
 
-const useStyles = makeStyles((theme) => ({
-    button : {
-      textTransform: 'capitalize',
-      color : "blue",
-    }
-  }))
+const useStyles = makeStyles({
+  searchBar : {
+    padding: '2px 4px',
+    margin : '15px 10px',
+    background : "#EBEBEB",
+    borderRadius : 25
+  },
+  button : {
+    textTransform: 'capitalize',
+    color : "blue"
+  }
+  })
 
 const SearchPage = () => {
+  const { searchWord } = useSelector(state => state.search)
+  const products = useSelector(state => state.products.items)
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  const handleClick = () => {
+  const handleChange = (e) => {
+    dispatch(searchForProducts(products, e.target.value))
+  }
+
+  const handleClear = () => {
+    dispatch(clearInput())
+  }
+
+  const handleCancel = () => {
     dispatch(displayLayout())
+    dispatch(clearInput())
   }
 
     return (
-      <>
-      
-        <Grid container justifyContent="space-between" alignItems="center"> 
+      <Grid container alignItems="center" className="search">
 
+        <Grid item container xs={9} className={classes.searchBar} alignItems="center">
+
+          <Grid item xs={2}>
+            <IconButton disabled edge="end">
+              <AiOutlineSearch />
+            </IconButton>
+          </Grid>
+ 
           <Grid item xs={9}>
-            <SearchBar className={classes.searchBar}/>
+            <InputBase placeholder="Search" fullWidth value={searchWord} onChange={handleChange} />
           </Grid>
-          
-          <Grid item xs={3}>
-            <Button className={classes.button} onClick={handleClick} > 
-              Geri Qayıt 
-            </Button>
+ 
+          <Grid item xs={1}>
+            <IconButton edge="start" onClick={handleClear}>
+               <MdCancel />
+            </IconButton>
           </Grid>
-          
-        </Grid> 
-     
-      </>
+         
+        </Grid>
+        
+        <Grid item xs={2}>
+          <Button className={classes.button} onClick={handleCancel} > 
+            Cancel 
+          </Button>
+        </Grid>  
+
+        {searchWord && <SearchTable /> }
+        
+      </Grid>
     )
 }
 

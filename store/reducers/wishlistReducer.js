@@ -7,20 +7,26 @@ const initialState = {
 
 export const wishlistReducer = (state = initialState, {type, payload}) => {
     switch(type) {
+
         case types.ADD_TO_WİSHLİST :
             return {
                 ...state,
-                items : [...state.items, payload],
-                counter : state.counter + 1
+                items : payload.wishlist,
+                counter : state.counter + payload.count
             }
 
         case types.REMOVE_FROM_WİSHLİST :
             return {
                 ...state,
-                items : state.items.filter(item => item !== payload),
+                items : payload.wishlist,
                 counter : state.counter - 1
             }
         
+        case types.CLEAR_WISHLIST : 
+            return {
+                items : [],
+                counter : 0
+            }
         default :
             return state
     }
