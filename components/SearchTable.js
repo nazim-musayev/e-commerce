@@ -44,13 +44,13 @@ const SearchTable = () => {
              {searchedProducts.map(product => (
 
                <TableRow key={product.id} onClick={handleClick}>
-                <Link href={`/${product.category}/${product.id}`} passHref>
+                <NextLink href={`/${product.category}/${product.id}`} passHref>
                  <TableCell>
                    <Link>
                    <Image src={product.image} alt={product.title} width={100} height={100} layout="fixed" />
                    </Link>
                  </TableCell>
-                </Link>
+                </NextLink>
 
                  <TableCell align="left">
                    <Typography color="primary">
